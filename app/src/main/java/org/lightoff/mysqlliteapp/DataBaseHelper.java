@@ -28,9 +28,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_COUNT + " INTEGER, "
                 + COLUMN_UNIT + " TEXT, "
-                + COLUMN_PIC + "INTEGER"
+                + COLUMN_PIC + " INTEGER"
                 +");");
-
 
         // добавление начальных данных
         db.execSQL("INSERT INTO "+ TABLE +" ("
@@ -39,7 +38,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMN_UNIT + ", "
                 + COLUMN_PIC
                 +") VALUES (" +
-                "'Bounty', 19, 'unit', 1/*R.drawable.bounty*/);");
+                "'Bounty', 19, 'unit',"+ R.drawable.bounty+");");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
