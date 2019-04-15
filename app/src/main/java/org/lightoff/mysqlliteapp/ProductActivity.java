@@ -3,6 +3,7 @@ package org.lightoff.mysqlliteapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +45,11 @@ public class ProductActivity extends AppCompatActivity {
             nameBox.setText(product.getName());
             countBox.setText(String.valueOf(product.getCount()));
             unitBox.setText(product.getUnit());
-            picBox.setImageResource(product.getPic());
+            Log.d("-",String.valueOf(product.getPic()));
+            Log.d("-",String.valueOf(R.drawable.bounty));
+
+            picBox.setImageResource(R.drawable.bounty);
+            Log.d("+","1");
             adapter.close();
         }
     }

@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("1","1");
 
         productList = (ListView)findViewById(R.id.list);
 
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        Log.d("2","2");
     }
 
     @Override
