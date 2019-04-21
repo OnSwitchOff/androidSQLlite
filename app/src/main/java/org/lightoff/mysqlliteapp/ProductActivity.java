@@ -1,6 +1,12 @@
 package org.lightoff.mysqlliteapp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -17,6 +30,8 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView picBox;
     private Button picButton;
     private Button saveButton;
+
+
 
     private DatabaseAdapter adapter;
     private int productId=0;
@@ -74,6 +89,7 @@ public class ProductActivity extends AppCompatActivity {
 
     public void changePic(View view){
 
+
     }
     private void goHome(){
         // переход к главной activity
@@ -81,4 +97,6 @@ public class ProductActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
+
+
 }

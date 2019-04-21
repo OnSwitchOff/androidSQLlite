@@ -14,7 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ListView productList;
-    ArrayAdapter<Product> arrayAdapter;
+    ProductAdapter productAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Product product =arrayAdapter.getItem(position);
+                Product product =productAdapter.getItem(position);
                 if(product!=null) {
                     Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
                     intent.putExtra("id", product.getId());
@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         List<Product> products = adapter.getProducts();
 
 
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
-        productList.setAdapter(arrayAdapter);
+        productAdapter = new ProductAdapter(this, R.layout.product_item, products);
+        productList.setAdapter(productAdapter);
         adapter.close();
     }
     // по нажатию на кнопку запускаем ProductActivity для добавления данных
