@@ -1,6 +1,8 @@
 package org.lightoff.mysqlliteapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,8 +33,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         TextView countView = (TextView) view.findViewById(R.id.itemCount);
 
         Product product = products.get(position);
-        Log.d("--", String.valueOf(product.getPic())+"="+String.valueOf(R.drawable.bounty));
-        picView.setImageResource(R.drawable.bounty);
+        //Log.d("--", String.valueOf(product.getPic())+"="+String.valueOf(R.drawable.bounty));
+//        picView.setImageResource(R.drawable.bounty);
+        Bitmap bitmap = BitmapFactory.decodeFile(product.getPic());
+        picView.setImageBitmap(bitmap);
         titleView.setText(product.getName());
         countView.setText(String.valueOf(product.getCount()));
 

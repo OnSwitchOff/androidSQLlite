@@ -5,9 +5,9 @@ public class Product {
     private String name;
     private int count;
     private String unit;
-    private int pic;
+    private String pic;
 
-    Product(int _id,String name,int _count, String unit, int _pic){
+    Product(int _id,String name,int _count, String unit, String _pic){
         this.id=_id;
         this.name = name;
         this.count=_count;
@@ -19,10 +19,10 @@ public class Product {
         return id;
     }
 
-    public int getPic() {
+    public String getPic() {
         return pic;
     }
-    public void setPic(int pic) {
+    public void setPic(String pic) {
         this.pic = pic;
     }
 

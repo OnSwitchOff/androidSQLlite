@@ -46,7 +46,7 @@ public class DatabaseAdapter {
                 String name = cursor.getString(cursor.getColumnIndex(DataBaseHelper.COLUMN_NAME));
                 int count = cursor.getInt(cursor.getColumnIndex(DataBaseHelper.COLUMN_COUNT));
                 String unit = cursor.getString(cursor.getColumnIndex(DataBaseHelper.COLUMN_UNIT));
-                int pic = cursor.getInt(cursor.getColumnIndex(DataBaseHelper.COLUMN_PIC));
+                String pic = cursor.getString(cursor.getColumnIndex(DataBaseHelper.COLUMN_PIC));
                 products.add(new Product(id,name,count,unit,pic));
             }
             while (cursor.moveToNext());
@@ -67,7 +67,7 @@ public class DatabaseAdapter {
             String name = cursor.getString(cursor.getColumnIndex(DataBaseHelper.COLUMN_NAME));
             int count = cursor.getInt(cursor.getColumnIndex(DataBaseHelper.COLUMN_COUNT));
             String unit = cursor.getString(cursor.getColumnIndex(DataBaseHelper.COLUMN_UNIT));
-            int pic = cursor.getInt(cursor.getColumnIndex(DataBaseHelper.COLUMN_PIC));
+            String pic = cursor.getString(cursor.getColumnIndex(DataBaseHelper.COLUMN_PIC));
             product = new Product(id,name,count,unit,pic);
         }
         cursor.close();

@@ -18,7 +18,7 @@ public class ExternalStorageImageManager {
         this.context=_context;
     }
 
-    void createExternalStoragePublicPicture(int img) {
+    void createExternalStoragePublicPicture(int img, String fileName) {
         // Create a path where we will place our picture in the user's
         // public pictures directory.  Note that you should be careful about
         // what you place here, since the user often manages these files.  For
@@ -26,7 +26,7 @@ public class ExternalStorageImageManager {
         // Context.getExternalMediaDir().
         File path = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        File file = new File(path, "DemoPicture.jpg");
+        File file = new File(path, fileName);
 
         try {
             // Make sure the Pictures directory exists.
@@ -72,14 +72,14 @@ public class ExternalStorageImageManager {
         file.delete();
     }
 
-    boolean hasExternalStoragePublicPicture() {
+    boolean hasExternalStoragePublicPicture(String fileName) {
         // Create a path where we will place our picture in the user's
         // public pictures directory and check if the file exists.  If
         // external storage is not currently mounted this will think the
         // picture doesn't exist.
         File path = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        File file = new File(path, "DemoPicture.jpg");
+        File file = new File(path, fileName);
         return file.exists();
     }
 }

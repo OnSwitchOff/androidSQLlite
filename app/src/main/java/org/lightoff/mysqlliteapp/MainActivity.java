@@ -1,9 +1,11 @@
 package org.lightoff.mysqlliteapp;
 
+import android.Manifest;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1001);
+        ExternalStorageImageManager im = new ExternalStorageImageManager(this);
+        im.createExternalStoragePublicPicture(R.drawable.mars,"Mars.jpg");
+        im.createExternalStoragePublicPicture(R.drawable.bounty,"Bounty.jpg");
         setContentView(R.layout.activity_main);
 
         productList = (ListView)findViewById(R.id.list);
@@ -33,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Product product =productAdapter.getItem(position);
+                Product product = productAdapter.getItem(position);
                 if(product!=null) {
                     Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
                     intent.putExtra("id", product.getId());

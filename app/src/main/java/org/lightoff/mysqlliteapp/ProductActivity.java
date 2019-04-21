@@ -35,6 +35,7 @@ public class ProductActivity extends AppCompatActivity {
     private EditText countBox;
     private EditText unitBox;
     private ImageView picBox;
+    String ImagePath=null;
     private Button picButton;
     private Button saveButton;
 
@@ -45,6 +46,7 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_product);
 
         nameBox = (EditText) findViewById(R.id.name);
@@ -69,8 +71,8 @@ public class ProductActivity extends AppCompatActivity {
             unitBox.setText(product.getUnit());
             Log.d("-",String.valueOf(product.getPic()));
             Log.d("-",String.valueOf(R.drawable.bounty));
-
-            picBox.setImageResource(R.drawable.bounty);
+            Bitmap bitmap = BitmapFactory.decodeFile(product.getPic());
+            picBox.setImageBitmap(bitmap);
             Log.d("+","1");
             adapter.close();
         }
@@ -81,8 +83,14 @@ public class ProductActivity extends AppCompatActivity {
         String name = nameBox.getText().toString();
         int count = Integer.parseInt(countBox.getText().toString());
         String unit = unitBox.getText().toString();
-        int pic = picBox.getId();
-        Product product = new Product(productId, name, count, unit, pic);
+        if (ImagePath==null){
+            File path = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            File fileB = new File(path, "Bounty.jpg");
+            ImagePath = fileB.getAbsolutePath();
+        }
+
+        Product product = new Product(productId, name, count, unit, ImagePath);
 
         adapter.open();
         if (productId > 0) {
@@ -96,13 +104,12 @@ public class ProductActivity extends AppCompatActivity {
 
     public void changePic(View view){
 
-        ExternalStorageImageManager im = new ExternalStorageImageManager(this);
-        im.createExternalStoragePublicPicture(R.drawable.mars);
         File path = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        File file = new File(path, "DemoPicture.jpg");
+        File fileM = new File(path, "Mars.jpg");
         ImageView logoView = (ImageView) findViewById(R.id.pic);
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        this.ImagePath = fileM.getAbsolutePath();
+        Bitmap bitmap = BitmapFactory.decodeFile(this.ImagePath);
         logoView.setImageBitmap(bitmap);
 
     }

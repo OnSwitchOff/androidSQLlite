@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.ContentValues;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "productstore.db"; // название бд
+    private static final String DATABASE_NAME = "productstore2.db"; // название бд
     private static final int SCHEMA = 1; // версия базы данных
     static final String TABLE = "products"; // название таблицы в бд
     // названия столбцов
@@ -28,7 +28,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_COUNT + " INTEGER, "
                 + COLUMN_UNIT + " TEXT, "
-                + COLUMN_PIC + " INTEGER"
+                + COLUMN_PIC + " TEXT"
                 +");");
 
         // добавление начальных данных
