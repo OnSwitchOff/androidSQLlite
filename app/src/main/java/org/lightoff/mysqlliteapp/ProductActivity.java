@@ -3,6 +3,10 @@ package org.lightoff.mysqlliteapp;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -21,6 +25,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -89,6 +96,14 @@ public class ProductActivity extends AppCompatActivity {
 
     public void changePic(View view){
 
+        ExternalStorageImageManager im = new ExternalStorageImageManager(this);
+        im.createExternalStoragePublicPicture(R.drawable.mars);
+        File path = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File file = new File(path, "DemoPicture.jpg");
+        ImageView logoView = (ImageView) findViewById(R.id.pic);
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        logoView.setImageBitmap(bitmap);
 
     }
     private void goHome(){
