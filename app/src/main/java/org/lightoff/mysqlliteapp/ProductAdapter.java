@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         ImageView picView = (ImageView) view.findViewById(R.id.itemPic);
         TextView titleView = (TextView) view.findViewById(R.id.itemTitle);
         TextView countView = (TextView) view.findViewById(R.id.itemCount);
+        TextView unitView = (TextView) view.findViewById(R.id.itemUnit);
+        final TextView itemId = (TextView) view.findViewById(R.id.itemId);
 
         Product product = products.get(position);
         //Log.d("--", String.valueOf(product.getPic())+"="+String.valueOf(R.drawable.bounty));
@@ -39,7 +42,17 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         picView.setImageBitmap(bitmap);
         titleView.setText(product.getName());
         countView.setText(String.valueOf(product.getCount()));
+        unitView.setText(product.getUnit());
+        itemId.setText(String.valueOf(product.getId()));
 
+
+        Button removeButton = (Button) view.findViewById(R.id.removeButton);
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("--", itemId.getText().toString());
+            }
+        });
         return view;
     }
 }
