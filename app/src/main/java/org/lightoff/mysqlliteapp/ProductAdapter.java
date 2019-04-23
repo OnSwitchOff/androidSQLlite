@@ -1,15 +1,18 @@
 package org.lightoff.mysqlliteapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -53,6 +56,20 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 Log.d("--", itemId.getText().toString());
             }
         });
+
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("click","item");
+                Intent intent = new Intent(getContext().getApplicationContext(), ProductActivity.class);
+                intent.putExtra("id", Integer.valueOf(itemId.getText().toString()));
+                intent.putExtra("click", 25);
+                getContext().startActivity(intent);
+            }
+        });
+
+
         return view;
     }
 }

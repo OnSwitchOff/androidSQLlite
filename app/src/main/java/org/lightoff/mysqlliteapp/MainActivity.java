@@ -38,19 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         productList = (ListView)findViewById(R.id.list);
 
-        productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Product product = productAdapter.getItem(position);
-                Log.d("click","item");
-                if(product!=null) {
-                    Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-                    intent.putExtra("id", product.getId());
-                    intent.putExtra("click", 25);
-                    startActivity(intent);
-                }
-            }
-        });
+
     }
 
     @Override
@@ -65,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(this, R.layout.product_item, products);
         productList.setAdapter(productAdapter);
         adapter.close();
+
     }
     // по нажатию на кнопку запускаем ProductActivity для добавления данных
     public void add(View view){
