@@ -120,5 +120,11 @@ public class ProductActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showDialog(View v) {
+
+        CustomDialogFragment dialog = new CustomDialogFragment();
+        dialog.show(getSupportFragmentManager(), "custom");
+    }
+
 
 }
