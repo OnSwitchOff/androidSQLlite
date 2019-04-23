@@ -47,6 +47,14 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            productId = extras.getInt("id");
+            ImagePath=extras.getString("selectedImgPath");
+        }
+
+//
+
         setContentView(R.layout.activity_product);
 
         nameBox = (EditText) findViewById(R.id.name);
@@ -57,10 +65,7 @@ public class ProductActivity extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.saveButton);
         adapter = new DatabaseAdapter(this);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            productId = extras.getInt("id");
-        }
+
         // если 0, то добавление
         if (productId > 0) {
             // получаем элемент по id из бд
@@ -102,11 +107,11 @@ public class ProductActivity extends AppCompatActivity {
         goHome();
     }
 
-    public void changePic(View view){
+    public void changePic(View view,String selectedImgPath){
 
         File path = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        File fileM = new File(path, "Mars.jpg");
+        File fileM = new File(path, selectedImgPath);
         ImageView logoView = (ImageView) findViewById(R.id.pic);
         this.ImagePath = fileM.getAbsolutePath();
         Bitmap bitmap = BitmapFactory.decodeFile(this.ImagePath);
@@ -124,6 +129,7 @@ public class ProductActivity extends AppCompatActivity {
 
         CustomDialogFragment dialog = new CustomDialogFragment();
         dialog.show(getSupportFragmentManager(), "custom");
+
     }
 
 

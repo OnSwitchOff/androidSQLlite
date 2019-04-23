@@ -2,6 +2,8 @@ package org.lightoff.mysqlliteapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -19,6 +21,9 @@ import java.util.ArrayList;
 public class CustomDialogFragment extends DialogFragment {
 
     ArrayList<String> filepath = new ArrayList<String>();//contains list of all files ending with
+    String selectedImgPath;
+    ProductActivity activity = (ProductActivity) getActivity();
+    View view;
 
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class CustomDialogFragment extends DialogFragment {
 
        }
 
-        View view= LayoutInflater.from(getContext()).inflate(R.layout.dialog, null, false);
+        view= LayoutInflater.from(getContext()).inflate(R.layout.dialog, null, false);
 
         ListView pathList = (ListView) view.findViewById(R.id.imgListt);
         // создаем адаптер
@@ -45,8 +50,8 @@ public class CustomDialogFragment extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 // по позиции получаем выбранный элемент
-                String selectedItem = filepath.get(position);
-                Log.d("selected img",selectedItem);
+                selectedImgPath = filepath.get(position);
+                Log.d("selected img",selectedImgPath);
             }
         });
 
@@ -55,7 +60,17 @@ public class CustomDialogFragment extends DialogFragment {
                 .setTitle("imgList")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setView(view)
-                .setPositiveButton("OK", null)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        Intent intent = new Intent(getContext(),ProductActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("selectedImgPath", selectedImgPath); //sets new window
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    }
+                })
+
                 .setNegativeButton("Отмена", null)
                 .create();
 
