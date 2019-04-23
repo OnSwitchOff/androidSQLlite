@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Product product = productAdapter.getItem(position);
+                Log.d("click","item");
                 if(product!=null) {
                     Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
                     intent.putExtra("id", product.getId());
