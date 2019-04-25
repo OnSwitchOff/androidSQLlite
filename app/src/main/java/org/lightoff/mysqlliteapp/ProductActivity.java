@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ public class ProductActivity extends AppCompatActivity {
     private EditText countBox;
     private EditText unitBox;
     private ImageView picBox;
-    String ImagePath=null;
+    static String ImagePath=null;
     private Button picButton;
     private Button saveButton;
 
@@ -107,17 +108,13 @@ public class ProductActivity extends AppCompatActivity {
         goHome();
     }
 
-    public void changePic(View view,String selectedImgPath){
-
-        File path = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        File fileM = new File(path, selectedImgPath);
-        ImageView logoView = (ImageView) findViewById(R.id.pic);
-        this.ImagePath = fileM.getAbsolutePath();
-        Bitmap bitmap = BitmapFactory.decodeFile(this.ImagePath);
+    public static void changePic(View view,String selectedImgPath){
+        ImageView logoView = (ImageView) view.findViewById(R.id.pic);
+        ImagePath = selectedImgPath;
+        Bitmap bitmap = BitmapFactory.decodeFile(ImagePath);
         logoView.setImageBitmap(bitmap);
-
     }
+
     private void goHome(){
         // переход к главной activity
         Intent intent = new Intent(this, MainActivity.class);

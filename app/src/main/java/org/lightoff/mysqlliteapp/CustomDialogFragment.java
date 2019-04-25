@@ -52,6 +52,7 @@ public class CustomDialogFragment extends DialogFragment {
                 // по позиции получаем выбранный элемент
                 selectedImgPath = filepath.get(position);
                 Log.d("selected img",selectedImgPath);
+                activity.changePic(LayoutInflater.from(getContext()).inflate(R.layout.activity_product, null, false),selectedImgPath);
             }
         });
 
@@ -60,16 +61,19 @@ public class CustomDialogFragment extends DialogFragment {
                 .setTitle("imgList")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setView(view)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        Intent intent = new Intent(getContext(),ProductActivity.class);
-                        Bundle b = new Bundle();
-                        b.putString("selectedImgPath", selectedImgPath); //sets new window
-                        intent.putExtras(b);
-                        startActivity(intent);
-                    }
-                })
+                .setPositiveButton("OK",
+//                        new DialogInterface.OnClickListener(){
+//                    public void onClick(DialogInterface dialog, int id) {
+//
+////                        Intent intent = new Intent(getContext(),ProductActivity.class);
+////                        Bundle b = new Bundle();
+////                        b.putString("selectedImgPath", selectedImgPath); //sets new window
+////                        intent.putExtras(b);
+////                        startActivity(intent);
+//                        activity.changePic(view,selectedImgPath);
+//                    }
+//                }
+                null)
 
                 .setNegativeButton("Отмена", null)
                 .create();

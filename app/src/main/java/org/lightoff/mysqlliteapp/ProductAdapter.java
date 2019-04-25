@@ -54,6 +54,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             @Override
             public void onClick(View v) {
                 Log.d("--", itemId.getText().toString());
+                DatabaseAdapter adapter = new DatabaseAdapter(getContext());
+                adapter.open();
+                adapter.delete(Integer.valueOf(itemId.getText().toString()));
+                adapter.close();
             }
         });
 
